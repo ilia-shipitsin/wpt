@@ -25,23 +25,6 @@ jobs:
         name: WPP
         path: tmp.etl
             
-  test2:
-    name: ilia-tmp-15
-    runs-on: ilia-tmp-15
-    steps:
-    
-      - run: |
-          Set-PSRepository -Name PSGallery -InstallationPolicy Trusted
-          Install-Module -Name Start-ProcessAsUser -Force
-          
-          Import-Module Start-ProcessAsUser
-          
-          $winStn = [Win32API.User32]::GetProcessWindowStation()
-          if (![Win32API.User32]::GetUserObjectInformation($winStn,[Win32API.User32+UserObjectInformationIndex]::UOI_FLAGS).dwFlags)
-          {
-             throw "Window station is not visible; If you run this Cmdlet in the service context, you may need to set the value of HKLM:\System\CurrentControlSet\Control\Windows::NoInteractiveServices to 0."
-          }
-        shell: powershell
-        
+
         
         
